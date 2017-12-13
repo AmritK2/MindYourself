@@ -1,74 +1,17 @@
-var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = processRequest();
-function processRequest() {
-    if (xhr.readyState === 4)
-    {
-        if (xhr.status >= 200 && xhr.status < 400)
-        {
-            var response = JSON.parse(xhr.responseText);
-            //document.write(response);
-            alert(response);
-        }
-        else
-            document.write("Error!")
-    }
-
-}
-xhr.open("GET", "https://www.codewars.com/api/v1/users/Amrit2");
-xhr.withCredentials = true;
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.send({'request': 'authentication token'});
-
-/*var xhr = new XMLHttpRequest();
-if ('withCredentials' in xhr)
-{
-    xhr.open('GET', "https://www.codewars.com/api/v1/users/Amrit2", true);
-
-    xhr.onreadystatechange = processRequest;
-
-    function processRequest() {
-        if (xhr.readyState === 4)
-        {
-            if (xhr.status >= 200 && xhr.status < 400)
-            {
-                var response = JSON.parse(xhr.responseText);
-                document.write(response);
-                //alert(response);
+function getUserInfo() {
+    var uri = "https://www.codewars.com/api/v1/users/Amrit2";
+    var request = new XMLHttpRequest();
+    request.open("GET", uri, true);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            if (request.status >= 200 && request.status < 400) {
+                console.log(JSON.parse(request.response));
+                console.log(JSON.parse(request.response).honor);
             }
-            else
-                document.write("Error!")
+            else {
+                console.log("Error");
+            }
         }
-
-    }
-xhr.send();
-}*/
-/*
-function createCORSRequest(method, url) {
-    var xhr = new XMLHttpRequest();
-    if ('withCredentials' in xhr)
-    {
-        xhr.open(method, url, true);
-    } else if (typeof XDomainRequest !== "undefined") {
-        // XDomainRequest for IE.
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-    } else {
-        // CORS not supported.
-        document.write("Error!")
-    }
-    return xhr;
+    };
+    request.send();
 }
-
-// Make the actual CORS request.
-function makeCorsRequest() {
-    // This is a sample server that supports CORS.
-    var url = 'https://www.codewars.com/api/v1/users/Amrit2';
-    var xhr = createCORSRequest('GET', url);
-    if (!xhr) {
-        alert('CORS not supported');
-        return;
-    }
-
-    xhr.send();
-}
-*/
