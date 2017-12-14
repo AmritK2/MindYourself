@@ -4,7 +4,7 @@ function getUserInfo() {
         var uri = "https://www.codewars.com/api/v1/users/" + array[position];
 
         var request = new XMLHttpRequest();
-        request.open("GET", uri, false); // need it to be synchronous as we don't want to go ahead without getting a callbacn
+        request.open("GET", uri, false); // need it to be synchronous as we don't want to go ahead without getting a callback
         request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status == 200) {
@@ -18,6 +18,7 @@ function getUserInfo() {
                     document.write("<h2>" + "User Honor: " + userHonor + "</h2>");
                     document.write("<h2>" + "User Clan: " + userClan + "</h2>");
                     document.write("<h2>" + "Leader Board Position: " + userPosition + "</h2>");
+
                 }
                 else {
                     console.log("Error");
