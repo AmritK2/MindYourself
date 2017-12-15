@@ -1,3 +1,20 @@
+// var curl = ("./node_modules/curlrequest.index   ");
+//
+// function getUserInfo() {
+//
+//     var uri = "https://www.codewars.com/api/v1/users/vietanh16";
+//
+//     var options = {
+//         url: uri,
+//         headers: { Authorization: "RNwKdUApVYGbbaAjUEa8" }
+//     };
+//
+//     curl.request(options, function(err, parts) {
+//         console.log(parts)
+//     });
+//
+// }
+
 function getUserInfo() {
     var array = ["Amrit2", "vietanh16", "DawnPiper"];
     for (var position = 0; position < array.length; position++) {
@@ -5,6 +22,7 @@ function getUserInfo() {
 
         var request = new XMLHttpRequest();
         request.open("GET", uri, false); // need it to be synchronous as we don't want to go ahead without getting a callback
+       // request.setRequestHeader("Authorization", "RNwKdUApVYGbbaAjUEa8");
         request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status == 200) {
@@ -14,19 +32,20 @@ function getUserInfo() {
                     var userClan = JSON.parse(request.response).clan;
                     var userPosition = JSON.parse(request.response).leaderboardPosition;
 
-                    document.write("<h1>" + "User Name: " + userName + "</h1>");
-                    document.write("<h2>" + "User Honor: " + userHonor + "</h2>");
-                    document.write("<h2>" + "User Clan: " + userClan + "</h2>");
-                    document.write("<h2>" + "Leader Board Position: " + userPosition + "</h2>");
-
+                    displayUserInfo(userName, userHonor, userClan, userPosition);
                 }
                 else {
                     console.log("Error");
                 }
             }
         };
-
-        request.send();
+request.send();
     }
+}
 
+function displayUserInfo(userName, userHonor, userClan, userPosition) {
+    document.write("<h1>" + "User Name: " + userName + "</h1>");
+    document.write("<h2>" + "User Honor: " + userHonor + "</h2>");
+    document.write("<h2>" + "User Clan: " + userClan + "</h2>");
+    document.write("<h2>" + "Leader Board Position: " + userPosition + "</h2>");
 }

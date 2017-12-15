@@ -2,6 +2,7 @@
   "name": "MindYourself",
   "version": "0.0.1",
   "dependencies": {
+    "curlrequest": "^1.0.1",
     "http-server": "^0.10.0"
   },
   "scripts": {
